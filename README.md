@@ -1,8 +1,10 @@
 # Content Factory
 
-> A Claude Code skill that builds a complete client-ready viral content strategy — paid AI ads + organic real-shot content — based on live trend research, and then executes it end to end.
+> A Claude Code skill that turns an offer + a product image into a complete client-ready viral content strategy — and then executes it end to end. AI ads, real human-shot content, or both. Lead-gen first.
 
 The headline deliverable is a polished HTML **Client Strategy Brief** built around the formats actually winning feeds right now: street interviews, podcast clips, UGC challenges, talking-head reviews, unboxings, ASMR close-ups, founder POV, day-in-life vlogs.
+
+Where most "AI ad builder" skills generate generic videos from a product photo, Content Factory starts with a **Phase 0 discovery conversation** — what you sell, who buys, what action you want them to take — and biases every downstream decision toward lead gen since most clients are running lead campaigns, not ecommerce purchases.
 
 After the client signs off, the same skill executes:
 
@@ -16,17 +18,30 @@ UX is **button-driven** — clicks, not typed commands. Internal mechanics (MCP 
 
 ---
 
+## What's new in v1.1
+
+- **Phase 0 — Offer / Audience / CTA discovery.** A 4-question conversation before research even starts, so every hook is anchored to a specific offer transformation, not a generic template.
+- **Track choice.** Pick AI ads only (Higgsfield required), real human-shot only (zero AI generation — useful when you have a creator team), or Both (the default).
+- **Built-in Higgsfield walkthrough.** If you're not connected yet, the skill walks you through account creation, plan selection, MCP connection, and access verification — under 5 minutes.
+- **Real competitor research.** Stage 1 now does a structured competitor scan (5–10 brands, format mix, posting cadence, the gap to own) instead of just aggregating trend searches.
+- **Hook Library workshop.** 30+ hooks generated before any production — split across Curiosity, Pattern Interrupt, Pain-Named, Cost/Receipt, **Funny / Podcast-Style** (the format dominating right now), and Founder Confession categories.
+- **CTA Library workshop.** 8 CTAs matched to your Phase 0 action choice. Form fills, booked calls, free trials, ecommerce, DMs — each with friction-reducer scripts.
+- **Lead-gen primary mode.** Default Meta Ads objective auto-sets to Leads. Format mix biases toward conversion-driving formats (Talking-Head Review, Founder POV, Street Interview). Qualifier defaults baked in.
+
+---
+
 ## What you get
 
 | Stage | Deliverable |
 |---|---|
-| 1 | Viral trend research across TikTok / Instagram / YouTube — competitor scan + hook library |
+| 0 | Offer + ICP + CTA profile — the foundation everything else builds on |
+| 1 | Viral trend research + competitor scan + Hook Library (30+ hooks) + CTA Library (8 scripted closers) |
 | 2 | **Client Strategy Brief (HTML)** — the document you send to the client |
 | 3 | AI video batch (Higgsfield) + real-shot production guide + image asset pack (GPT Image 2) |
 | 4 | Paid scheduling on Meta Ads + organic posting calendar export |
 | 5 | Cost-savings report — actual spend vs traditional industry midpoints |
 
-Brief-only mode (stop after Stage 2) and image-pack-only mode are both supported.
+Brief-only mode (stop after Stage 2), image-pack-only mode, and real-shot-only mode are all supported.
 
 ---
 

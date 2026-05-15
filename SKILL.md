@@ -1,18 +1,24 @@
 ---
 name: content-factory
 description: >
-  Build a complete client-ready viral content strategy — paid AI ads + organic — based on
-  live trend research across TikTok, Instagram, YouTube. The headline deliverable is a
-  polished HTML Content Strategy Brief built around the viral formats that are actually
-  winning right now (street interviews, podcast clips, UGC challenges, talking-head
-  reviews, unboxings, ASMR, founder POV, day-in-life vlogs). After client approval, the
-  same skill executes: generating AI ad videos via Higgsfield Marketing Studio for
-  AI-renderable formats, producing detailed shot lists + scripts for real-shot formats
-  (podcast clips, founder stories), generating the image asset pack via GPT Image 2, and
-  scheduling to Meta Ads + an organic calendar. Closes with a cost-savings report.
-  Button-driven UX — clicks, no typed commands. Trigger on a product image + content
-  request, or phrases like 'content strategy', 'viral content plan', 'content brief for a
-  client', 'build a content factory', 'create a campaign', 'content for [client]'.
+  Build a complete client-ready viral content strategy and execute it end to end. Starts
+  with a Phase 0 discovery conversation that captures the OFFER (what they sell, price,
+  who buys), the AUDIENCE (real ICP, pain, current alternatives), and the CTA (form fill,
+  booked call, free trial, demo) — biased toward lead gen since most clients are running
+  lead campaigns. Lets the user choose their production track: AI-generated ads (Higgsfield
+  Marketing Studio, with a built-in setup walkthrough if they're not connected yet), real
+  human-shot content (delivered as shot lists + scripts), or both. Stage 1 runs real
+  competitor research and a dedicated hook-and-CTA workshop because the hook makes or
+  breaks the ad — funny podcast-style hooks especially. Stage 2 ships a polished HTML
+  Client Strategy Brief built around the 8 viral formats winning right now (street
+  interviews, podcast clips, founder POV, day-in-life vlogs, UGC challenges, talking-head
+  reviews, unboxings, ASMR). Stage 3 produces the AI videos in Higgsfield and the
+  real-shot production guides. Stage 4 schedules paid creatives to Meta Ads and exports
+  the organic calendar. Stage 5 renders a savings report. Button-driven UX — clicks, not
+  typed commands. Trigger on a product image + content request, or phrases like 'content
+  strategy', 'viral content plan', 'content brief for a client', 'build a content factory',
+  'create a campaign', 'lead gen ads', 'help me with ads for my offer', 'content for
+  [client]'.
 ---
 
 # Content Factory
@@ -59,12 +65,117 @@ asks "how does it work under the hood," explain. Otherwise stay silent.
 
 ---
 
+## PHASE 0 — DISCOVERY (run BEFORE the technical onboarding)
+
+> ⚠️ A great strategy is downstream of a great offer + audience + CTA. The skill MUST
+> capture these before doing research, otherwise the brief will be generic. Phase 0 is a
+> structured conversation, NOT a form. Use AskUserQuestion buttons with smart defaults
+> that the user can accept in one click — typing is only required for content the user
+> must originate (offer name, price, audience descriptor).
+
+Send Phase 0 as a **SINGLE AskUserQuestion call** with multiple questions. Auto-detect
+defaults from any product image / URL already provided so most answers are one click.
+
+### The 4 Phase 0 questions
+
+**Q1 — The offer (what are they selling?)** [button + Other]
+Auto-detect a default from the product image / URL and offer it as the first button. The
+user clicks to accept or picks Other to type the real thing.
+
+- "Use auto: [detected — e.g. 'Cold-pressed coffee subscription · $39/mo']"
+- "Physical product (one-time purchase)"
+- "Subscription / membership"
+- "Service / done-for-you offer"
+- *Other → type the actual offer in one line: WHAT it is + PRICE + format (one-time / monthly / project-based)*
+
+**Q2 — The ICP (who actually buys it?)** [button + Other]
+Auto-detect demographic cues from packaging style. Offer 3 plausible ICP buckets the user
+can accept or override.
+
+- "Use auto: [detected — e.g. 'Wellness-leaning Millennials/Gen Z, urban, $80k+ HH income']"
+- "Service business owners (HVAC, dental, medspa, fitness, real estate)"
+- "Sales teams / sales managers (5–50 reps doing outbound)"
+- *Other → type the real ICP: who they are + what they currently use instead*
+
+**Q3 — The desired action (the CTA)** [button-only — this is critical]
+Bias toward lead gen since most MetaTech clients are running lead campaigns. The CTA
+shapes every hook, every script ending, every form field.
+
+- "**Form fill (lead gen — Recommended for service businesses)**"
+- "Booked call / demo via calendar link"
+- "Free trial signup / free-to-start activation"
+- "Direct purchase (ecommerce)"
+- "DM the brand (Instagram-first lead capture)"
+- *Other → type the specific desired action and where it happens (URL, landing page, DM, etc.)*
+
+**Q4 — Tone / personality** [button]
+This determines hook style. Funny podcast-style ads are wildly viral right now — surface
+that as a first-class option, not buried.
+
+- "**Funny / podcast-style (Recommended — winning hook style right now)**"
+- "Authoritative / educational"
+- "Confessional / founder-direct (vulnerable, raw)"
+- "High-energy / hype (challenge content, Gen Z)"
+- "Premium / aspirational (luxury, beauty, fashion)"
+
+### Storing the answers
+
+Cache all 4 answers in working memory as the **Offer Profile**. Every downstream stage
+references the Offer Profile:
+
+- Stage 1 trend research queries use the OFFER + ICP keywords
+- Competitor research uses the OFFER category
+- Hook Library generation uses the TONE
+- Format Mix biases by CTA (lead-gen CTAs → favor Talking-Head Review + Founder POV +
+  Street Interview; ecommerce CTAs → favor Unboxing + ASMR + Hyper Motion)
+- Stage 2 brief positions the strategy around the OFFER + ICP, NOT the product alone
+- Stage 3 prompts include the OFFER value prop in every scene description
+- Stage 4 Meta Ads campaign objective auto-sets from the CTA (form fill → Leads objective;
+  booked call → Leads objective; trial → Conversions; purchase → Sales)
+
+### One-line summary back to the user (after Phase 0)
+
+> "Got it — [OFFER] for [ICP], driving to [CTA] with a [TONE] flavor. Pulling up the
+> production options now."
+
+Then proceed to ONBOARDING (technical setup) below.
+
+### When Phase 0 can be auto-skipped
+
+If the user already provided all four pieces in their initial message ("I'm running a
+$39/mo coffee subscription targeting wellness Gen Z, need lead gen form fills, want funny
+podcast-style ads"), confirm the auto-detected Offer Profile back to them in ONE
+AskUserQuestion ("Looks like [summary]. Confirm and start?" / "Adjust the offer" /
+"Adjust the ICP" / "Adjust the CTA") and proceed if they confirm.
+
+### Why Phase 0 matters
+
+Without it, the brief reads like a template. With it, every hook, scene, and CTA in the
+brief is anchored to a specific offer transformation ("Service business owners using $97/
+seat dialers" vs "Anyone in the market for a dialer") — and that's the entire
+differentiator between a brief the client signs and a brief that gets edited to death.
+
+---
+
 ## ONBOARDING — single-shot, no pauses
 
 Send ALL onboarding questions in ONE AskUserQuestion call. Never sequence.
 
-**Step A — Higgsfield MCP connection** (button)
-"Yes — connected" · "Not yet — I'll connect now" · "Skip — brief only (no video generation)"
+**Step A — Production track** (button — THE most important choice)
+Determines which formats are in scope and whether we even need Higgsfield.
+
+- "**AI ads + Real-shot — Both (Recommended)**" — full 8-format mix, ~63% AI / ~37% real
+- "AI ads only" — Higgsfield required; campaign uses 5 AI formats only (no podcast clip, no founder POV, no vlog); cheaper, faster, less authentic
+- "Real-shot only (no AI generation)" — campaign uses the 3 real-shot formats + real Street Interview; we deliver shot lists + scripts; no Higgsfield needed
+- "I'm not sure — explain my options" — see "Track choice explained" below
+
+**Step A.1 — Higgsfield setup (CONDITIONAL — only fires if Track = AI or Both)** (button)
+- "Yes — Higgsfield is connected"
+- "Not yet — walk me through setup"
+- "I'll set it up later — start with the brief only"
+
+If user picks "Walk me through setup," fire the **Higgsfield Walkthrough** (see below).
+Skip Step A.1 entirely if Track = Real-shot only.
 
 **Step B — Starting stage** (button)
 - "Stage 1 — Full pipeline (Recommended — needs product image)"
@@ -77,10 +188,12 @@ Send ALL onboarding questions in ONE AskUserQuestion call. Never sequence.
 
 Store as `[VIDEO_COUNT]`. Image pack count = `floor(VIDEO_COUNT / 5)`.
 
-The split across the 8 viral formats (defined below) is `floor(VIDEO_COUNT / 8)` per
-format, with the remainder distributed starting from format 1. **Do not show the split to
-the user at this step** — it surfaces naturally inside the Stage 2 brief as a consequence
-of what the research showed, not as a config card.
+**Volume split logic by track:**
+- **Both** — `floor(VIDEO_COUNT / 8)` per format, remainder starts at format 1
+- **AI only** — `floor(VIDEO_COUNT / 5)` per AI format (Street Interview, Challenge, Review, Unboxing, ASMR); remainder starts at Street Interview
+- **Real-shot only** — `floor(VIDEO_COUNT / 4)` per real-shot format (Street Interview-real, Podcast Clip, Founder POV, Day-in-Life Vlog); remainder starts at Podcast Clip
+
+Do NOT show the split at this step. It surfaces naturally inside the Stage 2 brief.
 
 **Step D — Product / brief input** (file attach prompt in the same message)
 "Attach the product image to this message OR drop a URL — that's all I need to start."
@@ -88,8 +201,55 @@ of what the research showed, not as a config card.
 If a product image is already attached, skip D.
 If user picked Stage 3+ in Step B, swap D with: "Drop your approved brief or paste it here."
 
-**Single-message rule:** A/B/C buttons + D prompt go out in ONE message. User clicks, attaches
-the product, and the pipeline starts.
+**Single-message rule:** Step A + (A.1 only when AI/Both) + B + C buttons + D prompt go out
+in ONE message. User clicks, attaches the product, and the pipeline starts.
+
+### Track choice explained (only shown if user clicks "I'm not sure")
+
+Send this as a follow-up message, then re-ask Step A:
+
+> **Quick read on your options:**
+>
+> 🤖 **AI ads only.** Fastest + cheapest. We render everything in Higgsfield Marketing
+> Studio — no crew, no shoot day. Best for: testing a new offer, scaling a winner, brands
+> without an in-house creator. Trade-off: AI faces still read as "ad" to some viewers.
+> Avoid for podcast / founder content — credibility drops.
+>
+> 🎥 **Real-shot only.** Most authentic. You (or a hired creator) shoot the content; we
+> deliver scripts, shot lists, hooks, and CTAs. Best for: founder-led brands, podcast
+> clips, day-in-life content, premium positioning. Trade-off: takes 1–2 weeks longer and
+> costs more (creator fees).
+>
+> ⚡ **Both (Recommended).** The mix that actually wins right now. AI handles volume on
+> formats where consistency doesn't matter much (unboxings, challenges, ASMR, reviews).
+> Real shoots handle the trust-driven moments (podcast clips, founder voice, vlogs).
+> This is the default because most viral campaigns blend both.
+
+### Higgsfield Walkthrough (only fires if user picks "Walk me through setup")
+
+Send these instructions inline + a follow-up button confirmation:
+
+> **Higgsfield setup — takes about 5 minutes:**
+>
+> 1. **Go to [higgsfield.ai](https://higgsfield.ai)** and create an account. Use the same
+>    email you use for Claude so connection is smooth.
+> 2. **Pick a plan.** Creator (≈$0.02/credit) for testing, Team or Pro
+>    (≈$0.01–0.005/credit) for production. A 50-video campaign typically runs $30–60 on
+>    Creator, $15–40 on Team/Pro.
+> 3. **Connect Higgsfield to Claude.** Open Claude → **Settings** → **Connectors** →
+>    search for **Higgsfield** → click **Connect** and authenticate.
+> 4. **Check the connection.** Open a new chat in Claude. Type *"What models does
+>    Higgsfield have?"* — if Claude returns a real model list, you're set.
+> 5. **Come back here** and click "Done — connected" below.
+>
+> *If the Higgsfield connector isn't in the Connectors list, your Claude plan may not
+> have third-party connectors enabled yet. Pick "Skip — brief only" and I'll deliver
+> the Strategy Brief as a standalone deliverable (you can run production later).*
+
+AskUserQuestion follow-up:
+- "Done — connected" → proceed to Step B
+- "Skipped — give me the brief only" → set Track = Real-shot for purposes of this run, proceed to Step B
+- "Need help — Higgsfield site isn't loading / something's broken" → offer fallback to brief-only mode + flag a manual install ticket
 
 ---
 
@@ -223,9 +383,10 @@ config card. Do NOT enumerate the 8 formats here.
 
 Then proceed straight to Step 2.
 
-### Step 2 — Run 8 mandatory web searches *(internal — silent, parallel)*
+### Step 2 — Run 10 mandatory web searches *(internal — silent, parallel)*
 
-Replace `[niche]` and `[current month year]`:
+Use the Offer Profile from Phase 0 to make searches specific. Replace `[niche]`,
+`[offer_category]`, `[ICP_descriptor]`, and `[current month year]`:
 
 1. `[niche] TikTok trending videos this week [month year]`
 2. `viral [niche] Instagram Reels [month year]`
@@ -235,15 +396,154 @@ Replace `[niche]` and `[current month year]`:
 6. `[niche] UGC ads working Meta [month year]`
 7. `[niche] hooks that stop the scroll [month year]`
 8. `[niche] competitor brands social strategy [month year]`
+9. `[offer_category] ads targeting [ICP_descriptor] [month year]` (NEW — direct ad-spy)
+10. `funny podcast-style ads [niche] [month year]` (NEW — humor/podcast format spy)
 
-Extract: format, hook patterns, visual style, brands, engagement.
+Extract per result: format, hook patterns, visual style, brands, engagement.
 
-### Step 3 — Fetch 2+ source pages in parallel
+### Step 3 — Competitor scan (NEW — structured, not just a search aggregate)
 
-`web_fetch` the most useful URLs. Pull verbatim hook lines and creative patterns to seed
-the brief.
+> Goal: identify 5–10 direct competitors in this offer category, document what they're
+> doing on each platform, find the gap. This goes into the Stage 2 brief as the
+> **Competitor Audit** table — clients pay attention to this.
 
-### Step 4 — Synthesize the Viral Content Brief (internal markdown — Stage 2 builds HTML)
+**Method:**
+
+1. **Identify competitors silently** by combining: (a) brand names that surfaced in the
+   Step 2 trend searches, (b) `Facebook Ad Library` search via web_fetch for the offer
+   category, (c) `Meta Ad Library` direct URL pattern:
+   `https://www.facebook.com/ads/library/?active_status=all&ad_type=all&country=US&q=[offer_keyword]`,
+   (d) any competitor URLs the user mentioned in Phase 0.
+
+2. **For each competitor (target 5–10), capture:**
+   - Brand name + website
+   - Primary platform they're winning on (TikTok / IG / YouTube / Meta paid)
+   - Format mix (estimate the dominant 2–3 formats)
+   - Approximate posting cadence (daily / 3x week / weekly)
+   - 2–3 example hook lines they're using right now (verbatim if found in research)
+   - **The gap** — what they're NOT doing that we can own. This is the unlock.
+
+3. **Identify the angle nobody owns yet.** Examples:
+   - Competitor A dominates Unboxing but never does podcast clips → we own podcast.
+   - Competitor B does only authoritative tone → we own funny.
+   - Nobody is running Street Interview in this category → first-mover advantage.
+
+The competitor scan is structured output — store as a working memory table the Stage 2
+brief renders verbatim.
+
+### Step 4 — Fetch 3+ source pages in parallel *(silent)*
+
+`web_fetch` the most useful URLs from Steps 2 + 3 (target: 3+ pages, prioritize competitor
+ad library pages, viral TikTok/IG examples, and any podcast-clip viral threads). Pull
+verbatim hook lines and creative patterns to seed the brief.
+
+### Step 5 — Hook Library workshop (NEW — hooks are the single highest-leverage element)
+
+> The hook is what stops the scroll. The CTA is what drives the action. Everything in
+> between is the bridge. Most ads die in the first 3 seconds because the hook is generic.
+> This stage produces a **Hook Library** — 30+ hook variations the user can pick from
+> before any production happens.
+
+**Generate 30+ hooks organized by category** (tone from Phase 0 weights the mix):
+
+**Category 1 — Curiosity hooks** (8 hooks)
+- Pattern: open with a question the viewer needs answered.
+- Examples: "Does this actually work?" · "Why is nobody talking about [thing]?" · "Is
+  [common belief] a scam?" · "What if I told you [contrarian claim]?"
+- Generate 8 specific to the OFFER.
+
+**Category 2 — Pattern interrupts** (6 hooks)
+- Pattern: visual or verbal jolt in the first 2 seconds.
+- Examples: "STOP scrolling if you [target descriptor]…" · "Watch what happens when…" ·
+  "I just realized [counter-intuitive thing]" · "This is going to make [audience] mad…"
+- Generate 6 specific to the OFFER.
+
+**Category 3 — Pain-named hooks** (6 hooks)
+- Pattern: name the exact pain the viewer feels in the first sentence.
+- Examples: "Tired of [specific pain]?" · "If you're still [common painful behavior],
+  you're falling behind…" · "Watching [audience] [waste / lose / miss] [thing] is making
+  me crazy…"
+- Generate 6 specific to the OFFER + ICP pain points.
+
+**Category 4 — Cost / receipt hooks** (4 hooks)
+- Pattern: open with a specific dollar amount or stat.
+- Examples: "You're losing $[X] a month to [pain]" · "$[Price] for [thing] is insane —
+  here's what to do instead" · "[X]% of [audience] are doing this wrong"
+- Generate 4. Numbers must be real and grounded in ICP economics.
+
+**Category 5 — Funny / podcast-style hooks** (6 hooks — the winning style right now)
+- Pattern: setup → punchline. Tone of a podcast moment that got clipped because it was
+  hilarious. Often self-deprecating, contrarian, or shocking.
+- Examples: "I gotta get this off my chest…" · "Hot take: [niche tradition] is dumb" ·
+  "Three years ago I was wrong about [thing] and here's the receipt" · "Why I'll never
+  go back to [old way]"
+- Generate 6 in funny/podcast tone. This is the format James specifically called out as
+  viral right now — over-index here unless Tone = Premium.
+
+**Category 6 — Founder confession hooks** (4 hooks)
+- Pattern: founder vulnerability up front.
+- Examples: "I almost shut this down last year" · "The customer DM that changed
+  everything" · "My biggest mistake building [company]" · "I built this because [pain]"
+- Generate 4. These power the Founder POV format.
+
+**Hook validation rules:**
+1. Every hook must be ≤12 words for AI-format videos, ≤20 words for real-shot podcast clips.
+2. Every hook must pass the "scroll test": would a stranger pause at this in their feed?
+3. Every hook must work for the OFFER + ICP combo from Phase 0. If a generic hook
+   wouldn't work for THIS client, swap it.
+4. Avoid em dashes in spoken hooks. Avoid "Discover," "Unlock," "Revolutionary,"
+   "Game-changing" — these are corporate words, not viral words.
+
+### Step 6 — CTA Library workshop (NEW — biased toward the Phase 0 CTA choice)
+
+> Most ads end with "Click the link." That's not a CTA, that's a sentence. Generate 8
+> CTAs specific to the chosen action — these become the scripted endings of every video.
+
+**Generate 8 CTAs** matched to the Phase 0 CTA choice. Examples by CTA type:
+
+**If CTA = Form fill (lead gen):**
+1. "Click the link below, drop your info, and we'll [specific value delivery in 24h]."
+2. "Tap the link, answer 4 questions, and we'll [outcome]."
+3. "Hit the link, leave your email, and we'll [deliverable] — no call required."
+4. "Click below, fill out the form, and we'll [next step] within [timeframe]."
+5. "If this is you, click the link and let us know — we'll handle the rest."
+6. "The link below takes you to a 30-second form. Fill it out, we'll [action]."
+7. "Drop your details below and we'll [outcome] — no pressure, no hard sell."
+8. "Click the link, tell us [qualifier], and we'll [next step]."
+
+**If CTA = Booked call:**
+1. "Click below to book a 15-minute call — we'll [specific outcome]."
+2. "Hit the link, pick a time on my calendar, let's talk."
+3. "Tap below to book — first 10 spots this week."
+4. "Click the link to grab a slot — bring your [specific input]."
+5. "Drop your time below and we'll send a confirmation in 60 seconds."
+6. *(Continue pattern for 8 total)*
+
+**If CTA = Free trial / activation:**
+1. "Click the link, drop your number, AI calls you in 30 seconds. If it sounds robotic,
+   don't use it." *(This is the proven RizzDial CTA pattern — clone for similar offers.)*
+2. "Tap the link, start your free [trial type], no card needed."
+3. "Click to activate — takes 60 seconds, free forever."
+4. *(Continue pattern for 8 total)*
+
+**If CTA = Direct purchase (ecommerce):**
+1. "Tap below — first 100 ship today."
+2. "Click the link, use code [code] for [discount]."
+3. "Snag yours below — the [size/variant] always sells out first."
+4. *(Continue pattern for 8 total)*
+
+**If CTA = DM the brand:**
+1. "DM us the word '[trigger word]' and we'll send [deliverable]."
+2. "Comment '[word]' below and we'll DM you the [thing]."
+3. *(Continue pattern for 8 total)*
+
+**CTA validation rules:**
+1. Every CTA must reference the SPECIFIC desired action (no generic "click below").
+2. Every CTA must include a benefit + a reduction of friction (free, no card, takes 30 sec,
+   no pressure, no hard sell, money-back guarantee).
+3. Every CTA must be sayable in 2 seconds or less (or 1 line of caption text).
+
+### Step 7 — Synthesize the Viral Content Brief (internal markdown — Stage 2 builds HTML)
 
 Translate every trend into one of the 8 formats. Required fields per idea:
 
@@ -271,16 +571,29 @@ N. [Title]
 4. No lip-sync / multi-character / split-screen on AI ideas?
 5. REAL formats include a shot list with framing, lens, location, talent direction?
 
-### Step 5 — Internal approval gate (button)
+### Step 8 — Internal approval gate (button)
 
 Don't present the raw research brief to the user — Stage 2 does that as a polished HTML
-doc. Just confirm scope:
+doc. Confirm scope AND surface the hook + CTA library counts so the user feels the depth
+of work done:
 
-> "Research done — [X] viral trends pulled, [Y] competitor brands analyzed. Ready to
-> build the Client Strategy Brief?"
+> "Research done. Here's what I pulled:
+> - [X] viral trends across TikTok / IG / YouTube / podcast clips
+> - [Y] direct competitors mapped with format gaps
+> - [Z] hooks generated across 6 categories (curiosity, pattern interrupt, pain-named,
+>   cost/receipt, funny/podcast, founder confession)
+> - 8 CTAs matched to your [chosen CTA from Phase 0]
+>
+> Ready to build the Client Strategy Brief?"
 > - "Yes — build the brief (Recommended)"
-> - "Add more research (pull more trend searches)"
+> - "Show me the hooks first — I want to pick favorites before the brief"
+> - "Add more competitor research"
 > - "Refocus on a different angle"
+
+**If user picks "Show me the hooks first":** present the full Hook Library inline (all 6
+categories, all 30+ hooks), then AskUserQuestion as a multiSelect: "Which hooks are
+must-have in the brief? (Pick up to 12.)" Filter the brief's hook section to those
+favorites + auto-add the top 3 from each unselected category for variety.
 
 ---
 
@@ -307,21 +620,24 @@ Goal, brand colors, target market, the 8-format split are all auto-derived. No
 
 ### Step 2 — Generate the HTML brief
 
-**Required sections (in order):**
+**Required sections (in order — every section must appear):**
 
 1. **Cover** — client name, brand name, brief date, "Viral Content Strategy" title, brand-derived hero color
-2. **Executive Summary** — 1 paragraph: niche, target audience, the bet (what formats will dominate), expected output ([VIDEO_COUNT] videos + image pack), production timeline
-3. **The Trend Landscape** — table of trends pulled from research, each with: trend name, where it's winning (TikTok / IG / YouTube / podcasts), example brands using it, why it works
-4. **Competitor Audit** — table of 5–10 competitor brands, format mix they're using, what they're missing
-5. **Recommended Content Mix** — woven naturally, not as a config card. Show the 8-format breakdown with counts ("13 street interviews, 13 podcast clips, 13 founder POV, 13 day-in-life vlogs, 12 challenge clips, 12 talking-head reviews, 12 unboxings, 12 ASMR close-ups") AS A CONSEQUENCE of the trends the research surfaced. Use language like: "Based on what's actually winning this week in [niche], here's how the campaign breaks down…"
-6. **AI vs Real-Shot Split** — explicit table showing which formats are AI-generated (Higgsfield) vs real-shot (creator + product on camera). Counts per route. Why this split: AI handles the volume + variety on formats where consistency matters less; real shot handles the trust-driven formats (founder voice, podcast credibility, vlog authenticity).
-7. **The 8 Format Battle Cards** — one card per format with: definition, why it wins, 3 concept seeds (titles only — full prompts in production), example hook line, recommended posting cadence
-8. **Hook Library** — verbatim hook lines from research, organized by format. The client can see exact language being used.
-9. **Production Calendar** — date-by-date table for the campaign window: Date · Format · Production route · Concept · Where it posts (paid / organic / both)
-10. **Paid vs Organic Distribution** — which videos go into Meta paid campaigns, which go to organic feed posts only, which run both. Default split: top 30% performance creatives → paid; everything → organic feed.
-11. **Production Plan** — Stage 3 preview: how the AI batches will run, what shot lists the client/creator gets, image asset pack contents
-12. **What Happens Next** — 4-step plain-English: (1) Client signs off on this brief, (2) AI videos generate in 24h, (3) Shot lists handed off to creator + filmed within 7 days, (4) Everything scheduled to Meta + posted organic on approved dates
-13. **Cost Note** — brief line: "Full cost breakdown — actual spend vs traditional production — delivered after Stage 5."
+2. **Executive Summary** — 1 paragraph: the offer, who buys it, the desired action (CTA from Phase 0), the bet (what formats will dominate), expected output ([VIDEO_COUNT] videos + image pack), production timeline
+3. **The Offer Profile** *(NEW — explicit, referenced throughout)* — card showing: what they sell + price + format · who buys (ICP descriptor) · the desired action / CTA · the tone direction. This is the foundation the rest of the brief is anchored to.
+4. **The Trend Landscape** — table of trends pulled from research, each with: trend name, where it's winning (TikTok / IG / YouTube / podcasts), example brands using it, why it works
+5. **Competitor Audit** — table of 5–10 competitor brands, format mix they're using, posting cadence, **example hook lines** they're using right now, **the gap** column (what they're NOT doing that we can own)
+6. **Recommended Content Mix** — woven naturally, not as a config card. Show the format breakdown with counts AS A CONSEQUENCE of the trends the research surfaced. Use language like: "Based on what's actually winning this week in [niche] + what your competitors aren't doing, here's how the campaign breaks down…" Adjust counts per the user's chosen track (All 8 / AI only / Real-shot only).
+7. **Production Track Choice** *(NEW)* — explicit table: which formats are in scope (based on user's Step A choice), which are AI-generated vs real-shot, and why. If user picked AI-only or Real-only, this section says so clearly.
+8. **The Format Battle Cards** — one card per active format with: definition, why it wins for THIS offer + ICP combo, 3 concept seeds, example hook line, recommended posting cadence
+9. **Hook Library** *(MAJOR EXPANSION)* — full Hook Library from Stage 1 Step 5 organized by the 6 categories: Curiosity / Pattern Interrupt / Pain-Named / Cost-Receipt / Funny-Podcast / Founder Confession. Each category gets 4–8 hooks listed verbatim, copy-pastable. If the user pre-selected favorites in Stage 1 Step 8, mark those with a ⭐.
+10. **CTA Library** *(NEW)* — 8 CTAs matched to the Phase 0 CTA choice, copy-pastable, each tied to a specific desired action. Bias toward lead gen if the user picked form fill or booked call. Include 1–2 "friction-removal" variants ("no card needed," "30-second form," "no hard sell").
+11. **Production Calendar** — date-by-date table for the campaign window: Date · Format · Production route · Concept · Hook used · CTA used · Where it posts (paid / organic / both)
+12. **Paid vs Organic Distribution** — which videos go into Meta paid campaigns, which go to organic feed posts only, which run both. Default split: top 30% performance creatives → paid; everything → organic feed.
+13. **Production Plan** — Stage 3 preview: AI batch order, shot list deliverables, image asset pack contents
+14. **KPIs & Reporting** *(NEW)* — what success looks like for THIS campaign, anchored to the Phase 0 CTA. Lead-gen KPIs: CTR, CPM, **CPL**, **lead-to-call rate**, **show-up rate**, **close rate**, total qualified pipeline. Ecommerce KPIs: CTR, CPM, ROAS, CPA. Reporting cadence: weekly creative review, biweekly performance review.
+15. **What Happens Next** — 4-step plain-English: (1) Client signs off on this brief, (2) AI videos generate in 24h (if AI track), (3) Real-shot scripts handed off to creator + filmed within 7 days (if real-shot track), (4) Everything scheduled to Meta + posted organic on approved dates
+16. **Cost Note** — brief line: "Full cost breakdown — actual spend vs traditional production — delivered after Stage 5."
 
 **Design rules for the HTML:**
 - Brand-derived hero color (pull from product image)
