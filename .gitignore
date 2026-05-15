@@ -1,0 +1,21 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Outputs from running the skill (these are user-generated)
+outputs/
+*.html.bak
+
+# Env / secrets — never commit
+.env
+.env.local
+*.key
+*.pem
