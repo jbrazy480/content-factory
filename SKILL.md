@@ -291,6 +291,83 @@ scripts** for the client to film. The brief makes this split visible to the clie
 
 ---
 
+## LEAD-GEN MECHANICS + CTA LIBRARY
+
+> Most clients running this skill are doing **lead generation**, not direct ecommerce.
+> CTA, hook framing, and format weighting all bias toward lead-gen mechanics by default.
+> This section is the single source of truth for how that bias gets applied.
+
+### The 5 lead-gen CTAs (in priority order)
+
+The Phase 0 Q3 answer maps to ONE primary CTA. Every script ending, every form, every
+on-screen end-card uses that CTA verbatim across the campaign — consistent CTAs train the
+audience and lift fill rate.
+
+| # | CTA pattern | Best for | Form fields | Verbatim closing line |
+|---|---|---|---|---|
+| 1 | **Form fill (Lead Gen)** | Service businesses (medspa, HVAC, dental, real estate, fitness), B2B services, agencies | Name · Phone · Email · 1 qualifier | "Click the link, fill out the form, we'll text you in 5 minutes." |
+| 2 | **Booked call / demo** | High-ticket B2B, agencies, SaaS at $500+/mo, financial services | Name · Phone · Calendar slot · 1 qualifier | "Click the link and grab a spot on my calendar. No pitch — I'll show you exactly how it works." |
+| 3 | **Free trial / activation** | SaaS, PAYG products, freemium, info products | Email · Card on file (optional) · 1 qualifier | "Click the link, drop your number, it'll call you in 30 seconds. If it sounds robotic, don't use it." |
+| 4 | **DM the brand** | Instagram-first brands, creator collabs, low-budget tests | DM keyword trigger ("DM us 'GO'") | "DM the word [TRIGGER] and we'll send the details." |
+| 5 | **Direct purchase** | Ecommerce, physical product, low-ticket impulse | Cart link (Shop / IG Shop / website) | "Tap the link, free shipping on the first order." |
+
+### Format weighting by CTA
+
+When Phase 0 Q3 = **Form fill** or **Booked call** (the lead-gen majority), the campaign
+silently reweights the 8-format mix toward formats that convert form fills best:
+
+| Format | Lead-gen weight | Reason |
+|---|---|---|
+| Talking-Head Product Review | **HEAVY** (1.5×) | Highest converter — buyers are actively researching |
+| Founder POV / Story | **HEAVY** (1.5×) | Trust-driven; closes the "should I give them my number?" loop |
+| Street Interview | NORMAL | Top-of-funnel awareness |
+| Podcast Clip | NORMAL | Authority signal |
+| Day-in-Life Vlog | LIGHT (0.7×) | Awareness > conversion |
+| UGC Challenge | LIGHT (0.7×) | Save / share content, weaker on form fills |
+| Unboxing | LIGHT (0.7×) | Better for ecommerce CTAs |
+| ASMR | LIGHT (0.7×) | Best for save / awareness |
+
+When CTA = **Direct purchase**, invert: Unboxing + ASMR + Hyper Motion variants become
+HEAVY, Talking-Head Review stays normal, Founder POV drops to LIGHT.
+
+The skill applies this reweighting silently — the brief reports final per-format counts
+without exposing the multipliers. Do not show this table to the user.
+
+### Lead-gen form qualifier defaults
+
+Every lead-gen CTA in Meta uses **exactly 1 qualifier question** — more than 1 tanks fill
+rate by 20–40%. Auto-suggest based on Phase 0 Offer Profile:
+
+| Offer category | Default qualifier |
+|---|---|
+| Service business (HVAC, dental, medspa, salons, fitness) | "What's your biggest goal in the next 90 days?" |
+| Sales-team product (dialers, CRMs, lead nurture) | "How many reps are on your team?" (5–10 / 11–25 / 26–50 / 50+) |
+| SaaS / subscription | "Monthly revenue?" (<$10K / $10–50K / $50–250K / $250K+) |
+| Agency / B2B service | "Top marketing channel right now?" (Ads / SEO / Referral / None) |
+| Coaching / info product | "Have you taken a program like this before?" (Yes / No / Looking) |
+| Healthcare / wellness | "Top concern?" (3 options or free text) |
+
+The qualifier surfaces in the Stage 2 brief, the Meta Lead Form spec in Stage 4, and on
+the final card of the on-ad Instant Form.
+
+### Why the hook matters most
+
+The single biggest performance lever is **the first 3 seconds**. The CTA only matters if
+the viewer is still there to hear it. Stage 1 Step 5 (Hook Library workshop) generates 30+
+hook variations BEFORE production so the user can pick favorites matching Phase 0 TONE.
+
+**Funny / podcast-style hooks** are currently outperforming every other tone across niches
+in 2026:
+- They feel like organic feed content, not an ad ("native to the scroll")
+- They use the same cadence as Diary of a CEO / Joe Rogan clips viewers pause for
+- Humor disarms the "this is a sales pitch" alarm bell
+- They give the camera permission to be less polished (cheaper, more authentic)
+
+When Phase 0 Q4 = "Funny / podcast-style," the Hook Workshop weights extra hooks in this
+tone and the brief leads with this style in the Hook Library section.
+
+---
+
 ## MARKETING STUDIO CAPABILITY GROUND TRUTH
 
 Always honor these constraints. Query Higgsfield for live values in Stage 1 Step 0.
